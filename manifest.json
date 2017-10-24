@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "DeeptransLate",
+  "version": "1.0",
+  "description": "This extension uses Linguee's DeepL service to provide translations",
+  "author": "Herbert Braun, c't Magazin",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_title": "DeepTransLate",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "20": "icons/icon20.png",
+      "24": "icons/icon24.png",
+      "25": "icons/icon25.png",
+      "30": "icons/icon30.png",
+      "32": "icons/icon32.png",
+      "40": "icons/icon40.png"
+    },
+    "default_popup": "dashboard.html"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["translate.client.js"],
+    "run_at": "document_idle",
+    "all_frames": false
+  }],
+  "permissions": ["activeTab", "contextMenus"]
+}
