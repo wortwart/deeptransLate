@@ -1,1 +1,0 @@
-console.info('DeeptransLate extenstion is here!');
