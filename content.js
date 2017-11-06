@@ -1,9 +1,16 @@
-const browser =
-	window.browser ||
-	window.chrome ||
-	window.msBrowser
-;
+'use strict';
+console.log('DeeptransLate content', new Date().toISOString());
+const browser = window.browser || window.chrome;
 
+
+
+browser.runtime.onMessage.addListener(request => {
+  console.log("Message from the background script:");
+  console.log(request.greeting);
+  return Promise.resolve({response: "Hi from content script"});
+});
+
+/*
 const sendSelection = respond => {
 	let selection = window.getSelection().toString().trim();
 	if (!selection.length) return;
@@ -11,6 +18,7 @@ const sendSelection = respond => {
 };
 
 browser.runtime.onMessage.addListener((request, sender, respond) => {
+	console.log(request)
 	if (request.command === 'buttonClicked') {
 		console.log('Button!');
 		sendSelection(respond);
@@ -21,3 +29,4 @@ browser.runtime.onMessage.addListener((request, sender, respond) => {
 		console.log(request.data);
 	}
 });
+*/
