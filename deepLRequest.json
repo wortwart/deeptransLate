@@ -1,0 +1,21 @@
+{
+	"jsonrpc": "2.0",
+	"method": "LMT_handle_jobs",
+	"params": {
+		"jobs": [
+			{
+				"kind": "default",
+				"raw_en_sentence": TEXT_TO_TRANSLATE
+			}
+		],
+		"lang": {
+			"user_preferred_langs": [
+				FROM_LANGUAGE_DEFAULT,
+				TO_LANGUAGE_DEFAULT
+			],
+			"source_lang_user_selected": FROM_LANGUAGE,
+			"target_lang": TO_LANGUAGE
+		},
+		"priority": -1
+	}
+}

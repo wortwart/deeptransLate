@@ -1,32 +1,25 @@
 'use strict';
 console.log('DeeptransLate content', new Date().toISOString());
-const browser = window.browser || window.chrome;
+const ua = typeof browser === 'undefined'? chrome : browser;
 
-
-
-browser.runtime.onMessage.addListener(request => {
-  console.log("Message from the background script:");
-  console.log(request.greeting);
-  return Promise.resolve({response: "Hi from content script"});
-});
-
-/*
 const sendSelection = respond => {
 	let selection = window.getSelection().toString().trim();
-	if (!selection.length) return;
+	console.log('Send back "' + selection + '"')
 	respond(selection);
 };
 
-browser.runtime.onMessage.addListener((request, sender, respond) => {
-	console.log(request)
-	if (request.command === 'buttonClicked') {
-		console.log('Button!');
+ua.runtime.onMessage.addListener((request, sender, respond) => {
+	if (request.trigger === 'buttonClicked') {
+		console.log('Extension button clicked');
 		sendSelection(respond);
-	} else if (request.command === 'menuClicked') {
-		console.log('Context Menu!');
+	} else if (request.trigger === 'menuClicked') {
+		console.log('Context menu clicked');
 		sendSelection(respond);
-	} else if (request.command === 'translated') {
-		console.log(request.data);
+	} else if (request.trigger === 'translated') {
+		const warn = request.data.split('WARNING:');
+		if (warn.length === 2)
+			alert(warn[1]);
+		else
+			console.log(request.data);
 	}
 });
-*/
