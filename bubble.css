@@ -1,0 +1,56 @@
+.dlExt {
+	position: absolute;
+	z-index: 9999999;
+	/*display: none;*/
+	width: 310px;
+	height: 50px;
+	border: 1px solid red;
+	border-radius: .5em;
+	padding: 4px;
+	line-height: 1.1em;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	color: white;
+	background-color: black;
+	overflow: visible;
+	box-shadow: 3px 3px 3px 0 #a55;
+}
+
+.dlExt > div {
+	display: inline-block;
+	width: calc(300px - 1em);
+	max-height: 50px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.dlExt ol {
+	margin: 0;
+	padding: 0;
+}
+
+.dlExt ol > li:first-child:last-child {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.dlArrow {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  bottom: -10px;
+	border-width: 10px 20px 0 20px;
+	border-style: solid;
+	border-color: red transparent transparent transparent;
+}
+
+.dlExtClose {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 1em;
+	color: red;
+	cursor: pointer;
+}

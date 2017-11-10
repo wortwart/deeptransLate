@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300px" height="300px" viewBox="0 0 300 300">
+  <defs>
+    <filter x="-0.25" y="-0.25" width="1.5" height="1.5" style="color-interpolation-filters:sRGB;" id="filter924">
+      <feGaussianBlur stdDeviation="1" result="result1" />
+      <feGaussianBlur stdDeviation="10" result="result6" in="result1" />
+      <feComposite operator="atop" in="result6" in2="result1" result="result8" />
+      <feComposite operator="xor" result="fbSourceGraphic" in="result6" in2="result8" />
+      <feColorMatrix result="fbSourceGraphicAlpha" in="fbSourceGraphic" values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 2 0" />
+      <feGaussianBlur result="result0" in="fbSourceGraphicAlpha" stdDeviation="1" />
+      <feSpecularLighting specularExponent="35" specularConstant="1.5" surfaceScale="-2" lighting-color="rgb(255,255,255)" result="result1" in="result0">
+        <feDistantLight azimuth="230" elevation="60" />
+      </feSpecularLighting>
+      <feComposite operator="in" result="result2" in="result1" in2="fbSourceGraphicAlpha" />
+      <feComposite k3="1" k2="1" operator="arithmetic" result="result4" in="fbSourceGraphic" in2="result2" />
+      <feComposite operator="atop" in="result9" in2="result4" result="result91" />
+      <feBlend mode="multiply" in2="result91" />
+    </filter>
+  </defs>
+  <rect fill="#000080" stroke="#fc0" width="299" height="299" x="0" y="0" rx="35" ry="35" />
+  <text style="font-size:260px; font-family:'French Script MT'; filter:url(#filter924)" fill="#fc0" x="50" y="230">L</text>
+</svg>
