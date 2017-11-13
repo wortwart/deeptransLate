@@ -45,6 +45,9 @@ const embed_translation = resp => {
 const sendSelection = respond => {
 	const sel = window.getSelection();
 	const selText = sel.toString().trim();
+	if (selText.length < 2) selText = '';
+	if (!selText)
+		return alert(`No text selected!`);
 	const sRange = sel.getRangeAt(0);
 	const sRect = sRange.getBoundingClientRect();
 	createBubble(sRect, ++lastId);

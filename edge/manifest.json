@@ -35,7 +35,6 @@
     "all_frames": false
   }],
   "permissions": [
-    "activeTab",
     "contextMenus",
     "https://www.deepl.com/jsonrpc"
   ]

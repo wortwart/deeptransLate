@@ -4,10 +4,10 @@ const ua = typeof browser === 'undefined'? chrome : browser;
 
 const serviceURL = 'https://www.deepl.com/jsonrpc';
 const translateSettings = {
-	FROM_LANGUAGE_DEFAULT: 'EN', // auto, DE, EN, FR, ES, IT, NL, PL
-	TO_LANGUAGE_DEFAULT: 'DE',
-	FROM_LANGUAGE: 'auto',
-	TO_LANGUAGE: 'DE'
+	FROM_LANGUAGE_DEFAULT: '"EN"', // auto, DE, EN, FR, ES, IT, NL, PL
+	TO_LANGUAGE_DEFAULT: '"DE"',
+	FROM_LANGUAGE: '"auto"',
+	TO_LANGUAGE: '"DE"'
 };
 
 const sendToTab = (trigger, data = null, onResponse = null) => {
@@ -17,8 +17,8 @@ const sendToTab = (trigger, data = null, onResponse = null) => {
 	});
 };
 
-const deepLResponse = ev => {
-	console.log('DeepL response:', ev.target.response);
+const serviceResponse = ev => {
+	console.log('Service response');
 	try {
 		let resp = JSON.parse(ev.target.response);
 		console.log(resp)
@@ -26,41 +26,29 @@ const deepLResponse = ev => {
 	} catch(e) {
 		sendToTab('translated', 'WARNING:No valid JSON response');
 	}
-}
+};
 
-const sendToDeepL = (query, id) => {
-	console.log('sendToDeepL: "' + query + '"');
+const getSelection = msg => {
+	console.log(`getSelection: "${msg.selection}"`);
 	const tSettings = Object.assign({
-		TEXT_TO_TRANSLATE: query,
-		ID: id
+		TEXT_TO_TRANSLATE: `"${msg.selection.replace('"', '')}"`,
+		ID: msg.id
 	}, translateSettings);
 	const xhr = new XMLHttpRequest();
 	xhr.open('POST', serviceURL);
-	xhr.addEventListener('load', deepLResponse);
-	xhr.addEventListener('error', ev => sendToTab('translated', {warn: ev}));
 	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.addEventListener('load', serviceResponse);
+	xhr.addEventListener('error', ev => sendToTab('translated', {warn: ev}));
 	fetch('deepLRequest.json')
 		.then(resp => resp.text())
 		.then(json => {
 			for (let placeholder in tSettings) {
 				let re = new RegExp('\\b' + placeholder + '\\b', 'g');
-				if (typeof tSettings[placeholder] === 'string')
-					tSettings[placeholder] = `"${tSettings[placeholder]}"`;
 				json = json.replace(re, tSettings[placeholder]);
 			}
 			xhr.send(json);
 		})
 	;
-};
-
-const getSelection = msg => {
-	console.log('getSelection: "' + msg.selection + '"');
-	if (typeof msg.selection === 'undefined') selection = '';
-	if (msg.selection.length < 2) msg.selection = '';
-	if (!msg.selection)
-		sendToTab('translated', 'WARNING:no text selected');
-	else
-		sendToDeepL(msg.selection, msg.id);
 };
 
 ua.browserAction.onClicked.addListener(ev => sendToTab('buttonClicked', null, getSelection));

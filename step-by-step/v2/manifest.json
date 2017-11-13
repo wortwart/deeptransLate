@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "DeeptransLate",
-  "version": "1.0",
-  "description": "This extension uses Linguee's DeepL service to provide translations",
+  "version": "0.2",
+  "description": "Demo: Background + Content",
   "author": "Herbert Braun, c't Magazin",
   "icons": {
     "16": "icons/icon16.png",
@@ -28,10 +28,7 @@
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["content.js"],
-    "css": ["bubble.css"],
-    "run_at": "document_idle",
-    "all_frames": false
+    "js": ["content.js"]
   }],
   "permissions": [
     "contextMenus",
