@@ -39,7 +39,7 @@ const sendToDeepL = (query, id) => {
 	xhr.addEventListener('load', deepLResponse);
 	xhr.addEventListener('error', ev => sendToTab('translated', {warn: ev}));
 	xhr.setRequestHeader('Content-Type', 'application/json');
-	fetch('deepLRequest.json')
+	fetch('deepLRequest')
 		.then(resp => resp.text())
 		.then(json => {
 			for (let placeholder in tSettings) {

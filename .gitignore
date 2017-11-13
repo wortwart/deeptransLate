@@ -1,2 +1,8 @@
 /webextensions-examples
 /step-by-step/*/icons/
+/edge/icons/
+*.zip
+*.xpi
+*.crx
+*.nex
+*.pem

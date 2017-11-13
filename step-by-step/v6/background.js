@@ -19,7 +19,7 @@ const getSelection = text => {
 	xhr.open('POST', 'https://www.deepl.com/jsonrpc');
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.addEventListener('load', serviceResponse);
-	fetch('deepLRequest.json')
+	fetch('deepLRequest')
 		.then(resp => resp.text())
 		.then(json => {
 			json = json.replace('TEXT_TO_TRANSLATE', `"${text}"`);

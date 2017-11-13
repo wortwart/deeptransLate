@@ -39,7 +39,7 @@ const getSelection = msg => {
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.addEventListener('load', serviceResponse);
 	xhr.addEventListener('error', ev => sendToTab('translated', {warn: ev}));
-	fetch('deepLRequest.json')
+	fetch('deepLRequest')
 		.then(resp => resp.text())
 		.then(json => {
 			for (let placeholder in tSettings) {
