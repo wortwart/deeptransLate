@@ -28,8 +28,8 @@ const deepLResponse = ev => {
 	}
 }
 
-const sendToDeepL = (query, id) => {
-	console.log('sendToDeepL: "' + query + '"');
+const sendToService = (query, id) => {
+	console.log(`sendToService: "${query}"`);
 	const tSettings = Object.assign({
 		TEXT_TO_TRANSLATE: query,
 		ID: id
@@ -39,7 +39,7 @@ const sendToDeepL = (query, id) => {
 	xhr.addEventListener('load', deepLResponse);
 	xhr.addEventListener('error', ev => sendToTab('translated', {warn: ev}));
 	xhr.setRequestHeader('Content-Type', 'application/json');
-	fetch('deepLRequest')
+	fetch('deepLRequest.txt')
 		.then(resp => resp.text())
 		.then(json => {
 			for (let placeholder in tSettings) {
@@ -60,7 +60,7 @@ const getSelection = msg => {
 	if (!msg.selection)
 		sendToTab('translated', 'WARNING:no text selected');
 	else
-		sendToDeepL(msg.selection, msg.id);
+		sendToService(msg.selection, msg.id);
 };
 
 ua.browserAction.onClicked.addListener(ev => sendToTab('buttonClicked', null, getSelection));
