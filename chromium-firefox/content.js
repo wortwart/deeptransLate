@@ -1,7 +1,7 @@
 'use strict';
 console.info('DeeptransLate content', new Date().toISOString());
 const ua = typeof browser === 'undefined'? chrome : browser;
-const bubbleSize = {width: 320, height: 62};
+const bubbleSize = {width: 320, height: 64};
 const arrowSize = {width: 40, height: 10};
 let lastId = 0;
 
