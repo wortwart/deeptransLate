@@ -3,7 +3,7 @@
 	z-index: 9999999;
 	/*display: none;*/
 	width: 310px;
-	height: 50px;
+	height: 54px;
 	border: 1px solid red;
 	border-radius: .5em;
 	padding: 4px;
@@ -19,7 +19,7 @@
 .dlExt > div {
 	display: inline-block;
 	width: calc(300px - 1em);
-	max-height: 50px;
+	max-height: 54px;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
