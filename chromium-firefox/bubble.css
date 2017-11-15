@@ -3,23 +3,23 @@
 	z-index: 9999999;
 	/*display: none;*/
 	width: 310px;
-	height: 54px;
+	height: 56px;
 	border: 1px solid red;
 	border-radius: .5em;
 	padding: 4px;
-	line-height: 1.1em;
-	font-family: Helvetica, Arial, sans-serif;
+	line-height: 11px;
 	font-size: 11px;
+	font-family: Helvetica, Arial, sans-serif;
+	overflow: visible;
 	color: white;
 	background-color: black;
-	overflow: visible;
 	box-shadow: 3px 3px 3px 0 #a55;
 }
 
 .dlExt > div {
 	display: inline-block;
 	width: calc(300px - 1em);
-	max-height: 54px;
+	max-height: 56px;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -27,6 +27,11 @@
 .dlExt ol {
 	margin: 0;
 	padding: 0;
+	height: calc(56px - 8px);
+}
+
+.dlExt li {
+	padding: .5px 0;
 }
 
 .dlExt ol > li:first-child:last-child {
