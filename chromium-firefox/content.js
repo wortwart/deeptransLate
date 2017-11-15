@@ -1,5 +1,7 @@
 'use strict';
-console.info('DeeptransLate content', new Date().toISOString());
+const debug = false;
+if (debug)
+	console.info(`DeeptransLate content: ${new Date().toISOString()}`);
 const ua = typeof browser === 'undefined'? chrome : browser;
 const bubbleSize = {width: 320, height: 66};
 const arrowSize = {width: 40, height: 10};
@@ -51,7 +53,8 @@ const sendSelection = respond => {
 	const sRange = sel.getRangeAt(0);
 	const sRect = sRange.getBoundingClientRect();
 	createBubble(sRect, ++lastId);
-	console.info(`Send back "${selText}"`);
+	if (debug)
+		console.info(`Send back "${selText}"`);
 	respond({selection: selText, id: lastId});
 };
 
@@ -73,10 +76,12 @@ ua.runtime.onMessage.addListener((msg, sender, respond) => {
 	}
 
 	if (msg.trigger === 'buttonClicked') {
-		console.info('DeeptransLate: extension button clicked');
+		if (debug)
+			console.info('DeeptransLate: extension button clicked');
 		sendSelection(respond);
 	} else if (msg.trigger === 'menuClicked') {
-		console.info('DeeptransLate: context menu clicked');
+		if (debug)
+			console.info('DeeptransLate: context menu clicked');
 		sendSelection(respond);
 	} else if (msg.trigger === 'translated') {
 		embed_translation(msg.data);

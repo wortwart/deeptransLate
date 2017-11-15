@@ -1,5 +1,7 @@
 'use strict';
-console.log('DeeptransLate background', new Date().toISOString());
+const debug = false;
+if (debug)
+	console.info(`DeeptransLate background: ${new Date().toISOString()}`);
 const ua = typeof browser === 'undefined'? chrome : browser;
 
 const serviceURL = 'https://www.deepl.com/jsonrpc';
@@ -11,17 +13,18 @@ const translateSettings = {
 };
 
 const sendToTab = (trigger, data = null, onResponse = null) => {
-	console.log('sendToTab: ' + trigger, data);
+	if (debug)
+		console.info(`sendToTab: ${trigger}`, data);
 	ua.tabs.query({active: true, currentWindow: true}, tabs => {
 		ua.tabs.sendMessage(tabs[0].id, {trigger: trigger, data: data}, onResponse);
 	});
 };
 
 const serviceResponse = ev => {
-	console.log('Service response');
+	if (debug)
+		console.info(`Service response: ${ev.target.response}`);
 	try {
 		let resp = JSON.parse(ev.target.response);
-		console.log(resp)
 		sendToTab('translated', resp);
 	} catch(e) {
 		sendToTab('translated', 'WARNING:No valid JSON response');
@@ -29,7 +32,8 @@ const serviceResponse = ev => {
 };
 
 const getSelection = msg => {
-	console.log(`getSelection: "${msg.selection}"`);
+	if (debug)
+		console.info(`getSelection: "${msg.selection}"`);
 	const tSettings = Object.assign({
 		TEXT_TO_TRANSLATE: `"${msg.selection.replace('"', '')}"`,
 		ID: msg.id
