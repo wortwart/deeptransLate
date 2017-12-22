@@ -2,8 +2,6 @@
 	position: absolute;
 	z-index: 9999999;
 	/*display: none;*/
-	width: 310px;
-	height: 56px;
 	border: 1px solid red;
 	border-radius: .5em;
 	padding: 4px;
@@ -18,8 +16,6 @@
 
 .dlExt > div {
 	display: inline-block;
-	width: calc(300px - 1em);
-	max-height: 56px;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -27,7 +23,6 @@
 .dlExt ol {
 	margin: 0;
 	padding: 0;
-	height: calc(56px - 8px);
 }
 
 .dlExt li {

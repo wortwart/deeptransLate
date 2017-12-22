@@ -3,9 +3,25 @@ const debug = false;
 if (debug)
 	console.info(`DeeptransLate content: ${new Date().toISOString()}`);
 const ua = typeof browser === 'undefined'? chrome : browser;
-const bubbleSize = {width: 320, height: 66};
+const bubbleSize = {width: 520, height: 166};
 const arrowSize = {width: 40, height: 10};
 let lastId = 0;
+
+// Dynamic CSS
+const style = document.createElement('style');
+style.type = 'text/css';
+style.innerHTML = `.dl {
+	width: ${bubbleSize.width - 10}px;
+	height: ${bubbleSize.height - 10}px;
+}
+.dlExt > div {
+	width: calc(${bubbleSize.width - 20}px - 1em);
+	max-height: ${bubbleSize.height - 10}px;
+}
+.dlExt ol {
+	height: ${bubbleSize.height - 18}px;
+}`;
+document.querySelector('head').appendChild(style);
 
 const createBubble = (rect, id) => {
 	let bLeft = window.scrollX + rect.left + rect.width/2 - bubbleSize.width/2;
