@@ -1,16 +1,19 @@
 'use strict';
 const debug = false;
+const bubbleSize = {width: 320, height: 66};
+const arrowSize = {width: 40, height: 10};
+const maxShownTranslations = 3;
+
 if (debug)
 	console.info(`DeeptransLate content: ${new Date().toISOString()}`);
 const ua = typeof browser === 'undefined'? chrome : browser;
-const bubbleSize = {width: 520, height: 166};
-const arrowSize = {width: 40, height: 10};
 let lastId = 0;
 
 // Dynamic CSS
 const style = document.createElement('style');
 style.type = 'text/css';
-style.innerHTML = `.dl {
+style.innerHTML = `
+.dl {
 	width: ${bubbleSize.width - 10}px;
 	height: ${bubbleSize.height - 10}px;
 }
@@ -50,9 +53,11 @@ const embed_translation = resp => {
 	let html = `<div><ol>`;
 	resp.result.translations.forEach(el => {
 		html += `<li><ol>`;
-		el.beams.forEach(beam => {
-			html += `<li data-score="${beam.score}">${beam.postprocessed_sentence}</li>`;
-		});
+		const limit = el.beams.length < maxShownTranslations?
+			el.beams.length :
+			maxShownTranslations;
+		for (let i = 0; i < limit; i++)
+			html += `<li data-score="${el.beams[i].score}">${el.beams[i].postprocessed_sentence}</li>`;
 		html += `</ol></li>`;
 	});
 	html += `</ol></div>`;
