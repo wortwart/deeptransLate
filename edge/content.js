@@ -40,9 +40,12 @@ const createBubble = (rect, id) => {
 	}
 	document.body.innerHTML += `
 	<div class="dlExt" id="dl${id}" style="left: ${bLeft}px; top: ${bTop}px;">
-		<span class="dlExtClose" onclick="javascript: this.parentNode.remove();">X</span>
+		<span class="dlExtClose">X</span>
 		<span class="dlArrow" style="left: ${arrowLeft}px"></span>
 	</div>`;
+	document.querySelector('#dl' + id + '>.dlExtClose').addEventListener('click', ev => {
+		ev.target.parentNode.remove();
+	});
 };
 
 const embed_translation = resp => {

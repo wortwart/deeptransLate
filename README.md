@@ -21,5 +21,6 @@ For the tutorial, the repository contains six incomplete versions of the extensi
 - *Change bubble size in content.js*. This didn't work before because of static CSS dimensions.
 - *Limit number of translation beams*. The DeepL API has "translations" and "beams" but I never saw more than one translation.
 - The bubble only shows after we got some server response.
+- Closing the bubble now works without inline JavaScript which is a security issue on some webpages.
 
 Alas, MS Edge seems to have gone batshit crazy with this extension - at least on my machine. So much about "cross-browser". If (and that's a big if) I find motivation I'll try to fix the issues that the last browser update broke.
