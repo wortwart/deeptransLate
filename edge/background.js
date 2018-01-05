@@ -1,5 +1,5 @@
 'use strict';
-const debug = false;
+const debug = true;
 if (debug)
 	console.info(`DeeptransLate background: ${new Date().toISOString()}`);
 const ua = typeof browser === 'undefined'? chrome : browser;
@@ -35,7 +35,7 @@ const getSelection = msg => {
 	if (debug)
 		console.info(`getSelection: "${msg.selection}"`);
 	const tSettings = Object.assign({
-		TEXT_TO_TRANSLATE: `"${msg.selection.replace('"', '')}"`,
+		TEXT_TO_TRANSLATE: `"${msg.selection.replace(/\"/g, '\\"')}"`,
 		ID: msg.id
 	}, translateSettings);
 	const xhr = new XMLHttpRequest();
