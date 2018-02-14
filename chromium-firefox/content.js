@@ -1,6 +1,6 @@
 'use strict';
 const debug = false;
-const bubbleSize = {width: 320, height: 66};
+const bubbleSize = {width: 330, height: 96};
 const arrowSize = {width: 40, height: 10};
 const maxShownTranslations = 3;
 
